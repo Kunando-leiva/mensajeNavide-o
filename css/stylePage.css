@@ -1,0 +1,39 @@
+body {
+            margin: 10px;
+            padding: 10px;
+            background: rgb(0, 0, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .contenedor-imagen {
+            max-width: 90%;
+            max-height: 90%;
+            text-align: center;
+        }
+        img {
+            width: 50%;
+            height: auto;
+            border: 10px solid gold;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+        }
+        .volver {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: gold;
+            color: #040a08;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        p {
+            color: white;
+            text-align: center;
+            font-size: 35px;
+            margin-top: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
