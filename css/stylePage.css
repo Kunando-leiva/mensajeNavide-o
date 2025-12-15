@@ -1,0 +1,172 @@
+/* Estilos base */
+body {
+    background: url('../image/Fondo\ festivo.png') center/cover no-repeat fixed;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Contenedor principal personalizado */
+.contenedor-imagen {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Imagen estilizada */
+.imagen-container img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border: 3px solid gold;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.imagen-container img:hover {
+    box-shadow: 0 0 60px rgba(255, 215, 0, 0.6);
+    transform: scale(1.01);
+}
+
+/* Texto del mensaje */
+.texto-mensaje {
+    color: white;
+    font-size: 1.8rem;
+    line-height: 1.5;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Botón volver personalizado */
+.volver {
+    background: gold !important;
+    color: #040a08 !important;
+    border: 2px solid gold !important;
+    padding: 10px 25px !important;
+    font-size: 1.1rem !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.volver:hover {
+    background: #040a08 !important;
+    color: gold !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Media Queries optimizadas con Bootstrap */
+
+/* Pantallas medianas (tablets) */
+@media (max-width: 992px) {
+    .texto-mensaje {
+        font-size: 1.6rem;
+        padding: 15px;
+    }
+    
+    .imagen-container img {
+        max-width: 600px;
+        border-width: 2px;
+    }
+}
+
+/* Tablets pequeñas y móviles grandes */
+@media (max-width: 768px) {
+    .contenedor-imagen {
+        padding: 15px;
+    }
+    
+    .texto-mensaje {
+        font-size: 1.4rem;
+        margin-top: 20px;
+    }
+    
+    .imagen-container img {
+        border-radius: 15px;
+        max-width: 500px;
+    }
+    
+    .volver {
+        padding: 8px 20px !important;
+        font-size: 1rem !important;
+    }
+}
+
+/* Móviles */
+@media (max-width: 576px) {
+    .container-fluid {
+        padding: 10px !important;
+    }
+    
+    .texto-mensaje {
+        font-size: 1.2rem;
+        padding: 10px;
+    }
+    
+    .imagen-container img {
+        border-width: 2px;
+        border-radius: 10px;
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+    }
+    
+    .volver {
+        padding: 6px 15px !important;
+        font-size: 0.9rem !important;
+        margin: 10px !important;
+    }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 400px) {
+    .texto-mensaje {
+        font-size: 1.1rem;
+    }
+    
+    .imagen-container img {
+        border-width: 1px;
+    }
+}
+
+/* Modo landscape para móviles */
+@media (max-height: 600px) and (orientation: landscape) {
+    .container-fluid {
+        padding: 5px !important;
+    }
+    
+    .contenedor-imagen {
+        flex-direction: row !important;
+    }
+    
+    .texto-mensaje {
+        font-size: 1.1rem;
+        padding: 10px;
+    }
+    
+    .imagen-container img {
+        max-height: 80vh;
+        width: auto;
+        max-width: 50%;
+    }
+}
+
+/* Pantallas extra grandes */
+@media (min-width: 1400px) {
+    .texto-mensaje {
+        font-size: 2.2rem;
+        padding: 30px;
+    }
+    
+    .imagen-container img {
+        max-width: 900px;
+        border-width: 4px;
+    }
+}
+
+/* Ajustes para modo oscuro del sistema */
+@media (prefers-color-scheme: dark) {
+    .imagen-container img {
+        box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+    }
+}

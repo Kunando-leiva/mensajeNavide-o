@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Mensaje Navideño 19</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/stylePage.css">
+</head>
+<body>
+     <audio id="musicaNavidad" autoplay loop controls style="display: none;">
+        <source src="../music/mamá siempre decía, la vida es como una caja de bombones, nunca sabes lo que te va a tocar..mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    <button id="botonMusica" class="btn btn-success position-fixed top-0 end-0 m-3 z-3">
+        🔊 Música
+    </button>
+
+    <!-- Botón Volver con Bootstrap -->
+    <a href="../index.html" class="volver btn btn-warning fw-bold position-fixed top-0 start-0 m-3 z-3">
+        ← Volver
+    </a>
+    
+    <!-- Contenedor principal con Bootstrap -->
+    <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center p-3">
+        <div class="contenedor-imagen row align-items-center justify-content-center w-100">
+            <!-- Texto - cambia el orden según tamaño de pantalla -->
+            <div class="col-12 col-lg-5 order-2 order-lg-1">
+                <p class="texto-mensaje text-center text-lg-start bg-dark bg-opacity-75 text-white p-4 rounded ">
+                    Él nunca fuerza su destino; simplemente corre, ama y vive, y la vida lo lleva a lugares extraordinarios.
+                </p>
+            </div>
+            
+            <!-- Imagen -->
+            <div class="col-12 col-lg-7 order-1 order-lg-2 mb-4 mb-lg-0">
+                <div class="imagen-container text-center">
+                    <img src="../image/mensaje19.png" alt="Mensaje Navideño 19" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (opcional para interacciones) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const musica = document.getElementById('musicaNavidad');
+            const botonMusica = document.getElementById('botonMusica');
+            
+            // 1. CONFIGURACIÓN DEL FRAGMENTO (AJUSTA ESTOS VALORES)
+            // ====================================================
+            const INICIO_FRAGMENTO = 150;  // Segundos donde EMPIEZA el fragmento
+            const FIN_FRAGMENTO = 210;     // Segundos donde TERMINA el fragmento
+            const VOLUMEN = 0.7;          // Volumen (0.0 a 1.0)
+            // ====================================================
+            
+            // Configurar volumen inicial
+            musica.volume = VOLUMEN;
+            
+            // Variable para controlar si es la primera reproducción
+            let primeraReproduccion = true;
+            
+            // Función para configurar el fragmento
+            function configurarFragmento() {
+                musica.currentTime = INICIO_FRAGMENTO;
+                primeraReproduccion = false;
+                console.log(`Fragmento configurado: ${INICIO_FRAGMENTO}s a ${FIN_FRAGMENTO}s`);
+            }
+            
+            // Controlar cuando el audio llega al final del fragmento
+            musica.addEventListener('timeupdate', function() {
+                if (musica.currentTime >= FIN_FRAGMENTO) {
+                    // Volver al inicio del fragmento (loop)
+                    musica.currentTime = INICIO_FRAGMENTO;
+                }
+            });
+            
+            // Controlar música con el botón
+            botonMusica.addEventListener('click', function() {
+                if (musica.paused) {
+                    // Si es la primera vez, configurar el fragmento
+                    if (primeraReproduccion) {
+                        configurarFragmento();
+                    }
+                    
+                    musica.play()
+                        .then(() => {
+                            botonMusica.innerHTML = '⏸️ Pausar';
+                            botonMusica.classList.remove('btn-danger');
+                            botonMusica.classList.add('btn-success');
+                        })
+                        .catch(error => {
+                            console.log("Error al reproducir:", error);
+                            botonMusica.innerHTML = '▶️ Reproducir';
+                        });
+                } else {
+                    musica.pause();
+                    botonMusica.innerHTML = '▶️ Reproducir';
+                    botonMusica.classList.remove('btn-success');
+                    botonMusica.classList.add('btn-danger');
+                }
+            });
+            
+            // Intentar reproducción automática al cargar
+            setTimeout(() => {
+                if (musica.paused && primeraReproduccion) {
+                    configurarFragmento();
+                    
+                    musica.play()
+                        .then(() => {
+                            console.log("Reproducción automática iniciada");
+                            botonMusica.innerHTML = '⏸️ Pausar';
+                        })
+                        .catch(error => {
+                            console.log("Reproducción automática bloqueada. Usa el botón.");
+                            botonMusica.innerHTML = '▶️ Reproducir';
+                            botonMusica.classList.remove('btn-success');
+                            botonMusica.classList.add('btn-warning');
+                        });
+                }
+            }, 1000);
+            
+            // Botón para reiniciar el fragmento (opcional)
+            // Puedes añadir esto si quieres reiniciar manualmente
+            botonMusica.addEventListener('dblclick', function() {
+                configurarFragmento();
+                if (musica.paused) {
+                    musica.play();
+                    botonMusica.innerHTML = '⏸️ Pausar';
+                }
+                alert(`Fragmento reiniciado: ${INICIO_FRAGMENTO}s a ${FIN_FRAGMENTO}s`);
+            });
+        });
+    </script>
+</body>
+</html>
